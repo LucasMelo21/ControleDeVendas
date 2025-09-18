@@ -15,5 +15,32 @@ namespace ControleDeVendas.Data
         }
 
         public DbSet<ControleDeVendas.Models.Vendedor> Vendedor { get; set; } = default!;
+        public DbSet<ControleDeVendas.Models.Produto> Produto { get; set; } = default!;
+        public DbSet<ControleDeVendas.Models.VendaProduto> VendaProduto { get; set; } = default!;
+        public DbSet<ControleDeVendas.Models.Venda> Venda {  get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<VendaProduto>()
+                .HasKey(vp => new { vp.VendaId, vp.ProdutoId });
+
+            modelBuilder.Entity<VendaProduto>()
+                .HasOne(vp => vp.Venda)
+                .WithMany(v => v.VendasProdutos)
+                .HasForeignKey(vp => vp.VendaId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<VendaProduto>()
+                .HasOne(vp => vp.Produto)
+                .WithMany(p => p.VendasProdutos)
+                .HasForeignKey(vp => vp.ProdutoId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Produto>().Property(p => p.Valor).HasPrecision(10,2);
+            modelBuilder.Entity<VendaProduto>().Property(vp => vp.PrecoUnitario).HasPrecision(10,2);
+        }
+
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ControleDeVendas.Data;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ControleDeVendasContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("ControleDeVendasContext") ?? throw new InvalidOperationException("Connection string 'ControleDeVendasContext' not found.")));
@@ -12,6 +15,13 @@ builder.Services.AddDbContext<ControleDeVendasContext>(options =>
         npgsqlOptions => npgsqlOptions.MigrationsAssembly("ControleDeVendas")));
 
 var app = builder.Build();
+var ptBR = new CultureInfo("pt-BR");
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(ptBR),
+    SupportedCultures = new List<CultureInfo> { ptBR },
+    SupportedUICultures = new List<CultureInfo> { ptBR }
+};
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleDeVendas", "ControleDeVendas\ControleDeVendas.csproj", "{94556253-23F6-4CE6-B9F9-BEBE1BC22432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesWebCourse", "..\SalesWebCourse\SalesWebCourse\SalesWebCourse.csproj", "{9A87E1A6-A9BF-9EB7-C951-7C1E4016374D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{94556253-23F6-4CE6-B9F9-BEBE1BC22432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94556253-23F6-4CE6-B9F9-BEBE1BC22432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94556253-23F6-4CE6-B9F9-BEBE1BC22432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A87E1A6-A9BF-9EB7-C951-7C1E4016374D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A87E1A6-A9BF-9EB7-C951-7C1E4016374D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A87E1A6-A9BF-9EB7-C951-7C1E4016374D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A87E1A6-A9BF-9EB7-C951-7C1E4016374D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
