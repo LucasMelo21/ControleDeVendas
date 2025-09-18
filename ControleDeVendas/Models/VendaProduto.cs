@@ -21,5 +21,9 @@
             PrecoUnitario = precoUnitario;
             Comissao = comissao;
         }
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

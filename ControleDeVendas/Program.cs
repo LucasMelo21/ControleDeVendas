@@ -2,6 +2,7 @@
 using ControleDeVendas.Data;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
+using ControleDeVendas.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ControleDeVendasContext>(options =>
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<ControleDeVendasContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("ControleDeVendasContext"),
         npgsqlOptions => npgsqlOptions.MigrationsAssembly("ControleDeVendas")));
+
+builder.Services.AddScoped<VendaService>();
 
 var app = builder.Build();
 var ptBR = new CultureInfo("pt-BR");
