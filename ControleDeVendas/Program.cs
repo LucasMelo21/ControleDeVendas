@@ -16,6 +16,8 @@ builder.Services.AddDbContext<ControleDeVendasContext>(options =>
         npgsqlOptions => npgsqlOptions.MigrationsAssembly("ControleDeVendas")));
 
 builder.Services.AddScoped<VendaService>();
+builder.Services.AddScoped<VendedorService>();
+builder.Services.AddScoped<ProdutoService>();
 
 var app = builder.Build();
 var ptBR = new CultureInfo("pt-BR");
@@ -25,7 +27,7 @@ var localizationOptions = new RequestLocalizationOptions
     SupportedCultures = new List<CultureInfo> { ptBR },
     SupportedUICultures = new List<CultureInfo> { ptBR }
 };
-
+app.UseRequestLocalization(localizationOptions);
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {

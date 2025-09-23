@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ControleDeVendas.Models
 {
@@ -10,17 +12,21 @@ namespace ControleDeVendas.Models
         [Range(0, 999999.99)]
         [DisplayFormat(DataFormatString = "${0:F2}")]
         public double Comissao { get; set; }
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DataContratacao { get; set; }
         public ICollection<Venda> Vendas { get; set; } = new List<Venda>();
+        public Vendedor() 
+        {
 
-        public Vendedor() { }
-        public Vendedor(int id, string name, double comissao)
+        }
+        public Vendedor(int id, string nome, double comissao)
         {
             Id = id;
-            Nome = name;
+            Nome = nome;
             Comissao = comissao;
-            DataContratacao = DateTime.Now;
+            DataContratacao = DateTime.Today;
         }
         public double CalcularTotalVendas()
         {

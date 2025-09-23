@@ -13,6 +13,20 @@ namespace ControleDeVendas.Services
         {
             _context = context;
         }
+        public async Task<List<Vendedor>> ListAsync(CancellationToken ct = default)
+        {
+            return await _context.Vendedor
+                .AsNoTracking()          
+                .OrderBy(v => v.Nome)    
+                .ToListAsync(ct);
+        }
+        public async Task<bool> ExistsAsync(int id, CancellationToken ct = default)
+        {
+            return await _context.Vendedor
+                .AsNoTracking()
+                .AnyAsync(v => v.Id == id, ct);
+        }
+
         public async Task<List<Vendedor>> FindAllAsync()
         {
             return await _context.Vendedor

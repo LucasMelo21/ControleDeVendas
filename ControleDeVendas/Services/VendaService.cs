@@ -39,7 +39,7 @@ namespace ControleDeVendas.Services
                 throw;
             }
         }
-        public async Task<Venda> FindByIdAsync(int id)
+        public async Task<Venda> FindByIdAsync(int id, CancellationToken ct = default)
         {
             var venda = await _context.Venda.Include(v => v.VendasProdutos).ThenInclude(vp => vp.Produto).FirstOrDefaultAsync(v => v.Id == id);
             if (venda == null)

@@ -11,6 +11,7 @@ namespace ControleDeVendas.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+
             migrationBuilder.CreateTable(
                 name: "Vendedor",
                 columns: table => new

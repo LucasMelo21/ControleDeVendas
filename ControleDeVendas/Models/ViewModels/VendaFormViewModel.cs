@@ -5,6 +5,7 @@ namespace ControleDeVendas.Models.ViewModels
 {
     public class VendaFormViewModel
     {
+        public int Id { get; set; }
         [Required]
         public int VendedorId { get; set; }
         [Required]

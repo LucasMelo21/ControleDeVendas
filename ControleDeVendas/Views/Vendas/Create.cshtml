@@ -1,0 +1,58 @@
+﻿@model ControleDeVendas.Models.ViewModels.VendaFormViewModel
+
+@{
+    ViewData["Title"] = "Nova Venda";
+}
+
+<h2>Nova Venda</h2>
+
+<form asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="VendedorId" class="form-label"></label>
+        <select asp-for="VendedorId" asp-items="Model.Vendedores" class="form-select"></select>
+        <span asp-validation-for="VendedorId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Data" class="form-label"></label>
+        <input asp-for="Data" type="datetime-local" class="form-control" />
+        <span asp-validation-for="Data" class="text-danger"></span>
+    </div>
+
+    <h5>Produtos</h5>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Selecionar</th>
+                <th>Produto</th>
+                <th>Preço Atual</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Itens.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input asp-for="Itens[@i].Selecionado" class="form-check-input" />
+                        <input asp-for="Itens[@i].ProdutoId" type="hidden" />
+                        <input asp-for="Itens[@i].Nome" type="hidden" />
+                        <input asp-for="Itens[@i].PrecoAtual" type="hidden" />
+                    </td>
+                    <td>@Model.Itens[i].Nome</td>
+                    <td>@Model.Itens[i].PrecoAtual.ToString("C")</td>
+                    <td>
+                        <input asp-for="Itens[@i].Quantidade" type="number" min="0" class="form-control form-control-sm" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

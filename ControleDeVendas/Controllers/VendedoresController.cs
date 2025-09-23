@@ -43,11 +43,15 @@ namespace ControleDeVendas.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var vendedor = new Vendedor
+            {
+                DataContratacao = DateTime.Today,
+            };
+            return View(vendedor);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Vendedor vendedor)
+        public async Task<IActionResult> Create([Bind("Id,Nome,DataContratacao")] Vendedor vendedor)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +79,7 @@ namespace ControleDeVendas.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Vendedor vendedor)
+        public async Task<IActionResult> Edit(int id, Vendedor vendedor)
         {
             if (id != vendedor.Id)
             {

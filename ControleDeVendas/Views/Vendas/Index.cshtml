@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ControleDeVendas.Models.Venda>
+
+@{
+    ViewData["Title"] = "Vendas";
+}
+
+<h2>Vendas</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nova Venda</a>
+</p>
+
+<table class="table table-striped table-sm align-middle">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Data</th>
+            <th>Vendedor</th>
+            <th class="text-end">Total</th>
+            <th style="width: 200px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var venda in Model)
+        {
+            decimal total = venda.VendasProdutos?.Sum(vp => (decimal)vp.PrecoUnitario * vp.Quantidade) ?? 0m;
+
+            <tr>
+                <td>@venda.Id</td>
+                <td>@venda.Data.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@venda?.Vendedor?.Nome</td>
+                <td class="text-end">@total.ToString("C")</td>
+                <td class="text-end">
+                    <a asp-action="Details" asp-route-id="@venda.Id" class="btn btn-sm btn-info">Detalhes</a>
+                    <a asp-action="Edit" asp-route-id="@venda.Id" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@venda.Id" class="btn btn-sm btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

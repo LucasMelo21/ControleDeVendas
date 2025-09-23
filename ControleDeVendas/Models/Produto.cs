@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace ControleDeVendas.Models
 {
@@ -7,11 +8,16 @@ namespace ControleDeVendas.Models
         [Required(ErrorMessage ="{0} necessário")]
         public int Id { get; set; }
         [Required(ErrorMessage = "{0} necessário")]
+        [StringLength(50)]
         public string Nome { get; set; }
         [Required(ErrorMessage = "{0} necessário")]
         [DisplayFormat(DataFormatString = "${0:F2}")]
+        public bool Ativo { get; set; } = true;
+
+        [Range(0, 999999.99)]
         public decimal Valor { get; set; }
         public int QuantidadeEstoque { get; set; }
+        [ValidateNever]
         public ICollection<VendaProduto> VendasProdutos { get; set; } 
         public Produto() { }
 

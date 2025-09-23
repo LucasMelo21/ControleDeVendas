@@ -43,5 +43,13 @@ namespace ControleDeVendas.Models
         {
             return VendasProdutos.Sum(v => v.Comissao);
         }
+        public override string ToString()
+        {
+            return Data.ToString("dd/MM/yyyy")
+                + ", "
+                + Vendedor.Nome
+                + ", Total de Produtos:"
+                + VendasProdutos.Count;
+        }
     }
 }

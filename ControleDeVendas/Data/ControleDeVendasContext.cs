@@ -23,6 +23,10 @@ namespace ControleDeVendas.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Produto>()
+                .Property(p => p.Valor)
+                .HasPrecision(10, 2);
+
             modelBuilder.Entity<VendaProduto>()
                 .HasKey(vp => new { vp.VendaId, vp.ProdutoId });
 
